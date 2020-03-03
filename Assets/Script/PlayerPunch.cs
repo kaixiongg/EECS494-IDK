@@ -1,43 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerPunch : MonoBehaviour
 {
     public GameObject LHand;
     public GameObject RHand;
-    private bool punch = false;
+    bool punch = false;
+
     public Vector3 direction;
 
     public GameObject hand;
 
-    void Start()
+    void Awake()
     {
-        direction = new Vector3(1, 0, 0);
         hand = LHand;
     }
 
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && punch == false)
+        direction = new Vector3(1, 0, 0);
+    }
+
+    void OnPunch()
+    {
+        if (punch == false)
         {
             punch = true;
             StartCoroutine(Punch());
-            
-        }    
+        }
     }
 
     IEnumerator Punch()
     {
-        Vector3 start = hand.transform.position;
-        Vector3 end = hand.transform.position + direction * 1.5f;
+        Vector3 start = hand.transform.localPosition;
+        Vector3 end = hand.transform.localPosition + direction * 1.5f;
 
         float timeElapsed = 0f;
         float totalLerpTime = 0.2f;
 
         while(timeElapsed < totalLerpTime)
         {
-            hand.transform.position = Vector3.Lerp(start, end, (timeElapsed/totalLerpTime));
+            hand.transform.localPosition = Vector3.Lerp(start, end, (timeElapsed/totalLerpTime));
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -46,11 +51,11 @@ public class PlayerPunch : MonoBehaviour
 
         while(timeElapsed < totalLerpTime)
         {
-            hand.transform.position = Vector3.Lerp(end, start, (timeElapsed/totalLerpTime));
+            hand.transform.localPosition = Vector3.Lerp(end, start, (timeElapsed/totalLerpTime));
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        hand.transform.position = start;
+        hand.transform.localPosition = start;
 
         Debug.Log("enable");
         if (hand != LHand) hand = LHand;

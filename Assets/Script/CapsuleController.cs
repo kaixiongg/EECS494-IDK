@@ -40,7 +40,8 @@ public class CapsuleController : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        Debug.Log("Moving");
         movement_input = value.Get<Vector2>();
     }
+
+    
 }
