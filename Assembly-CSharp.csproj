@@ -73,7 +73,6 @@
     <Compile Include="Assets\Script\FireHook.cs" />
     <Compile Include="Assets\Script\HookPlayer.cs" />
     <Compile Include="Assets\Script\PlayerPunch.cs" />
-    <Compile Include="Assets\Script\ShootHook.cs" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />
     <None Include="Assets\ProCore\ProBuilder\readme.txt" />
     <None Include="Assets\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />
