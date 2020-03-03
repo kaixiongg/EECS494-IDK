@@ -201,9 +201,10 @@ GameObject:
   - component: {fileID: 2559218082889557309}
   - component: {fileID: 2559218082889557308}
   - component: {fileID: 48700993}
+  - component: {fileID: 4382777995423688243}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,6 +304,20 @@ MonoBehaviour:
   RHand: {fileID: 5548469018861315278}
   direction: {x: 0, y: 0, z: 0}
   hand: {fileID: 0}
+--- !u!136 &4382777995423688243
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559218082889557311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3968212466218328755
 GameObject:
   m_ObjectHideFlags: 0

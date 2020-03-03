@@ -70,6 +70,8 @@
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
     <Compile Include="Assets\ProCore\ProBuilder\API Examples\Vertex Colors\HighlightNearestFace.cs" />
     <Compile Include="Assets\Script\CapsuleController.cs" />
+    <Compile Include="Assets\Script\FireHook.cs" />
+    <Compile Include="Assets\Script\HookPlayer.cs" />
     <Compile Include="Assets\Script\PlayerPunch.cs" />
     <Compile Include="Assets\Script\ShootHook.cs" />
     <None Include="Assets\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />
