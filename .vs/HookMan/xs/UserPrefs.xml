@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{9F0F840F-C345-5487-E84D-3A58DDC44A3C}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ShootHook.cs">
+    <Files>
+      <File FileName="Assets/ShootHook.cs" Line="7" Column="5" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HookMan" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="ShootHook.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="09442baf-1d6f-4a11-a47e-ddee0b19d36c" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
