@@ -702,8 +702,11 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   move_speed: 10
   rotation: {x: 0, y: 0, z: 0, w: 0}
+  speed: 10
+  rotationSpeed: 100
   text_component: {fileID: 8148839871084549618}
-  isAbleToMove: 1
+  player_number: 1
+  isableMove: 1
 --- !u!54 &3079683866274023895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -734,9 +737,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LHand: {fileID: 3968212466218328755}
   RHand: {fileID: 5548469018861315278}
-  punch: 0
+  isPunch: 0
+  isablePunch: 0
   direction: {x: 0, y: 0, z: 0}
-  isAbleToPunch: 0
   hand: {fileID: 0}
 --- !u!136 &3885434656757123800
 CapsuleCollider:
@@ -764,12 +767,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5db39235a1dc543b4dd3457323712f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hooktower: {fileID: 3546588702830282460, guid: a490ce4ffbe2cd44584fe87b8beb5647,
+  hookTower: {fileID: 3546588702830282460, guid: a490ce4ffbe2cd44584fe87b8beb5647,
     type: 3}
   forward: {fileID: 8114627893898751283}
   duration_time: 5
-  chargebar: {fileID: 9018221830748910197}
-  isAbleToLayDownHook: 0
+  chargeBar: {fileID: 9018221830748910197}
+  isableLayDownHook: 0
+  player_number: 0
 --- !u!114 &5297199891510828479
 MonoBehaviour:
   m_ObjectHideFlags: 0

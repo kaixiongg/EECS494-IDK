@@ -30,9 +30,6 @@ public class FireHook : MonoBehaviour
         dis = gameObject.GetComponent<Transform>().rotation *(-1*Vector3.forward).normalized;
         //dis =  Vector3.forward;
         Debug.Log(dis);
-        //Debug.Log(z);
-        //Vector3 x = gameObject.GetComponent<Transform>().rotation * Vector3.right;
-        //Debug.Log(x);
 
 
         hookobj = gameObject.GetComponentInChildren<LineRenderer>();
@@ -85,14 +82,32 @@ public class FireHook : MonoBehaviour
                 hookobj.enabled = false;
                 hookendpoint.SetActive(false);
                 isstop = true;
-                Destroy(this.gameObject);
+
+                // dizziness 
+                if (caughtplayer != null) { caughtplayer.SetParent(null); StartCoroutine(Dizziness()); }
+                else { Destroy(this.gameObject); }
             }
 
         }
         //release the player being caught
-        if (isstop && caughtplayer != null)
+        //if (isstop && caughtplayer != null)
+        //{
+        //    caughtplayer.SetParent(null);
+        //}
+
+        IEnumerator Dizziness()
         {
-            caughtplayer.SetParent(null);
+            foreach (MeshRenderer child in this.GetComponentsInChildren<MeshRenderer>())
+            {
+                Destroy(child);
+            }
+            this.isstop = false;
+            yield return new WaitForSeconds(3f);
+            caughtplayer.GetChild(0).gameObject.SetActive(false);
+            caughtplayer.GetComponentInChildren<CapsuleController>().isAbleToMove = true;
+            caughtplayer.GetComponentInChildren<PlayerPunch>().isAbleToPunch = true;
+            caughtplayer.GetComponentInChildren<LayDownHook>().isAbleToLayDownHook = true;
+            Destroy(this.gameObject);
         }
     }
 

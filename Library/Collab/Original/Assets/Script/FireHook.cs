@@ -26,10 +26,10 @@ public class FireHook : MonoBehaviour
         //Vector3 cube1 = transform.TransformPoint(transform.Find("Cube1").GetComponent<Transform>().position);
 
         //dis = (cube3 - cube1).normalized;
-        // Debug.Log(gameObject.GetComponent<Transform>().rotation.eulerAngles);
+        Debug.Log(gameObject.GetComponent<Transform>().rotation.eulerAngles);
         dis = gameObject.GetComponent<Transform>().rotation *(-1*Vector3.forward).normalized;
         //dis =  Vector3.forward;
-        // Debug.Log(dis);
+        Debug.Log(dis);
         //Debug.Log(z);
         //Vector3 x = gameObject.GetComponent<Transform>().rotation * Vector3.right;
         //Debug.Log(x);
@@ -74,7 +74,7 @@ public class FireHook : MonoBehaviour
         //withdraw the hook
         else
         {
-            if (Vector3.Distance(originpos, hookendpttran.position) > 0.5f)
+            if (Vector3.Distance(originpos, hookendpttran.position) > 1.0f)
             {
                 hookendpttran.Translate(-1 *dis * hookspeed * Time.deltaTime, Space.World);
                 //keep the hook same position as the end point of the hook
@@ -86,8 +86,8 @@ public class FireHook : MonoBehaviour
                 hookendpoint.SetActive(false);
                 isstop = true;
 
-                // dizziness 
-                if (caughtplayer != null) { caughtplayer.SetParent(null);  StartCoroutine(Dizziness()); }
+                // 眩晕效果 coroutine
+                if (caughtplayer != null) { caughtplayer.SetParent(null); StartCoroutine(Dizziness()); }
                 else { Destroy(this.gameObject); }
             }
 

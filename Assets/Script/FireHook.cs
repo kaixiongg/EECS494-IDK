@@ -30,9 +30,6 @@ public class FireHook : MonoBehaviour
         dis = gameObject.GetComponent<Transform>().rotation *(-1*Vector3.forward).normalized;
         //dis =  Vector3.forward;
         Debug.Log(dis);
-        //Debug.Log(z);
-        //Vector3 x = gameObject.GetComponent<Transform>().rotation * Vector3.right;
-        //Debug.Log(x);
 
 
         hookobj = gameObject.GetComponentInChildren<LineRenderer>();
@@ -107,9 +104,9 @@ public class FireHook : MonoBehaviour
             this.isstop = false;
             yield return new WaitForSeconds(3f);
             caughtplayer.GetChild(0).gameObject.SetActive(false);
-            caughtplayer.GetComponentInChildren<CapsuleController>().isAbleToMove = true;
-            caughtplayer.GetComponentInChildren<PlayerPunch>().isAbleToPunch = true;
-            caughtplayer.GetComponentInChildren<LayDownHook>().isAbleToLayDownHook = true;
+            caughtplayer.GetComponentInChildren<CapsuleController>().isableMove = true;
+            caughtplayer.GetComponentInChildren<PlayerPunch>().isablePunch = true;
+            caughtplayer.GetComponentInChildren<LayDownHook>().isableLayDownHook = true;
             Destroy(this.gameObject);
         }
     }

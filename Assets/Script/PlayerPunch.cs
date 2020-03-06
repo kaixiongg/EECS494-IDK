@@ -5,31 +5,36 @@ using UnityEngine.InputSystem;
 
 public class PlayerPunch : MonoBehaviour
 {
-    public GameObject LHand;
-    public GameObject RHand;
-    public bool punch = false;
+    public GameObject LHand; // LHand
+    public GameObject RHand; // RHand
 
-    public Vector3 direction;
+    public bool isPunch; // 是否出拳
+    public bool isablePunch; // 是否能出拳
 
-    public bool isAbleToPunch;
+    public Vector3 direction; // 出拳方向
 
-    public GameObject hand;
+    public GameObject hand; // 出拳手
 
+    int player_number; // player 序列号
+     
     void Awake()
     {
-        hand = LHand;
+        hand = LHand; // 出拳手初始是左手
     }
 
     void Start()
     {
+        isPunch = false;
+        isablePunch = true;
         direction = new Vector3(1, 0, 0);
+        player_number = this.GetComponent<CapsuleController>().player_number;
     }
 
-    void OnPunch()
+    void Update()
     {
-        if (punch == false && isAbleToPunch)
+        if (isPunch == false && isablePunch && Input.GetButtonDown("Punch" + player_number.ToString()))
         {
-            punch = true;
+            isPunch = true;
             StartCoroutine(Punch());
         }
     }
@@ -59,8 +64,9 @@ public class PlayerPunch : MonoBehaviour
         }
         hand.transform.localPosition = start;
 
-        if (hand != LHand) hand = LHand;
-        else hand = RHand;
-        punch = false;
+        if (hand != LHand) { hand = LHand; } // 换手
+        else { hand = RHand; }
+
+        isPunch = false;
     }
 }

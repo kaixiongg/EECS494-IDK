@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// bind to camera
+
 public class ScreenShakeManager : MonoBehaviour
 {
     static ScreenShakeManager instance;
@@ -52,3 +54,4 @@ public class ScreenShakeManager : MonoBehaviour
         }
     }
 }
+

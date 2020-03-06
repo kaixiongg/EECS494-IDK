@@ -17,13 +17,16 @@ public class LayDownHook : MonoBehaviour
     private bool m_Pressed;
     private bool m_Released;
 
+    public bool isAbleToLayDownHook;
+
     void Awake()
     {
         input = new ControllerInput();
 
         input.Capsule.PlaceHookTower.performed += ctx => m_Pressed = true;
         input.Capsule.PlaceHookTower.canceled += ctx => m_Released = true;
-    }
+        isAbleToLayDownHook = true;
+}
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +50,13 @@ public class LayDownHook : MonoBehaviour
         {
 
             var temp = forward.position; temp.y = 0.1f;
+            //forward.eulerAngles
+            //Vector3 rot = capsuleController.getroation().eulerAngles;
+            //rot = new Vector3(rot.x, rot.y + 180, rot.z);
+            //GameObject tower = Instantiate(hooktower, temp, Quaternion.Euler(rot))
+            Vector3 rot = forward.eulerAngles;
+            rot = new Vector3(rot.x, rot.y - 90, rot.z - 90);
 
-            Vector3 rot = capsuleController.getroation().eulerAngles;
-            rot = new Vector3(rot.x, rot.y + 180, rot.z);
             GameObject tower = Instantiate(hooktower, temp, Quaternion.Euler(rot));
             tower.GetComponent<FireHook>().hookspeed += tower.GetComponent<FireHook>().hookspeed * (charge_time / duration_time) * 3;
             tower.transform.Find("Hook").GetComponent<Transform>().localScale *= ((charge_time / duration_time) * 2);

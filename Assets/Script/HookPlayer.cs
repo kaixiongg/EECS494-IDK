@@ -21,9 +21,9 @@ public class HookPlayer : MonoBehaviour
 
             collision.collider.gameObject.transform.parent.GetChild(0).gameObject.SetActive(true);
             collision.collider.gameObject.transform.parent.transform.SetParent(hook);
-            collision.collider.gameObject.GetComponent<CapsuleController>().isAbleToMove = false;
-            collision.collider.gameObject.GetComponent<PlayerPunch>().isAbleToPunch = false;
-            collision.collider.gameObject.GetComponent<LayDownHook>().isAbleToLayDownHook = false;
+            collision.collider.gameObject.GetComponent<CapsuleController>().isableMove = false;
+            collision.collider.gameObject.GetComponent<PlayerPunch>().isablePunch = false;
+            collision.collider.gameObject.GetComponent<LayDownHook>().isableLayDownHook = false;
 
             playerMovement = collision.collider.gameObject;
             fireHook.ishooking = false;
@@ -33,7 +33,7 @@ public class HookPlayer : MonoBehaviour
 
     void OnDestroy()
     {
-        playerMovement.GetComponent<CapsuleController>().isAbleToMove = true;
+        playerMovement.GetComponent<CapsuleController>().isableMove = true;
     }
 
 }

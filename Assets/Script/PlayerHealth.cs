@@ -7,7 +7,6 @@ using System.Linq;
 public class PlayerHealth : MonoBehaviour
 {
     public float health;
-
     public Image healthBar;
 
     public Color originColor;
@@ -33,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Fist" && collision.collider.GetComponentInParent<PlayerPunch>().punch && !isHit)
+        if (collision.collider.tag == "Fist" && collision.collider.GetComponentInParent<PlayerPunch>().isPunch && !isHit) // 1. Tag 2. 确实有出拳 3. invincible
         {
             ScreenShakeManager.Perturb();
             isHit = true;
@@ -51,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            foreach (MeshRenderer child in this.GetComponentsInChildren<MeshRenderer>())
+            foreach (MeshRenderer child in this.GetComponentsInChildren<MeshRenderer>()) // 记录初始颜色
             {
                 if (child.name == "Capsule")
                     originColor = child.material.color;

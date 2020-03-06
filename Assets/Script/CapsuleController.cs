@@ -13,26 +13,32 @@ public class CapsuleController : MonoBehaviour
     public Quaternion rotation;
     MeshRenderer cap_mr;
 
+
+    public float speed = 10.0f;
+    public float rotationSpeed = 100.0f;
+
     public Text text_component;
+    public int player_number = 1;
 
     int color = 0;
     int team = 0;
 
     // public Transform parentPlayer; 
 
-    public bool isAbleToMove = true;
+    public bool isableMove = true;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cap_mr = transform.Find("Capsule").GetComponent<MeshRenderer>();
+        isableMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isAbleToMove)
+        if (isableMove)
         {
             Move();
             Rotate();
@@ -56,12 +62,16 @@ public class CapsuleController : MonoBehaviour
     {
         return rotation;
     }
+
     void Move()
     {
-        if (movement_input != Vector2.zero)
+        
+        if (Input.GetAxis("LAnalogX" + player_number.ToString()) != 0 || Input.GetAxis("LAnalogY" + player_number.ToString()) != 0)
         {
-            Vector3 movement = new Vector3(movement_input.x, 0, movement_input.y) * move_speed * Time.deltaTime;
+            Vector3 movement = new Vector3(Input.GetAxis("LAnalogX" + player_number.ToString()), 0.0f, -Input.GetAxis("LAnalogY" + player_number.ToString())) * move_speed * Time.deltaTime;
+
             rotation = Quaternion.LookRotation(movement);
+
             transform.Translate(movement, Space.World);
         }
         else
@@ -72,9 +82,9 @@ public class CapsuleController : MonoBehaviour
 
     void Rotate()
     {
-        if (movement_input != Vector2.zero)
+        if (Input.GetAxis("LAnalogX" + player_number.ToString()) != 0 || Input.GetAxis("LAnalogY" + player_number.ToString()) != 0)
         {
-            Vector3 movement = new Vector3(-movement_input.y, 0.0f, movement_input.x);
+            Vector3 movement = new Vector3(Input.GetAxis("LAnalogY" + player_number.ToString()), 0.0f, Input.GetAxis("LAnalogX" + player_number.ToString()));
 
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(movement), 0.2F);
         }
@@ -84,58 +94,54 @@ public class CapsuleController : MonoBehaviour
         }
     }
 
-    void OnMove(InputValue value)
-    {
-        movement_input = value.Get<Vector2>();
-    }
 
-    void OnColor(InputValue value)
-    {
-        color += (int) value.Get<float>();
+    //void OnColor(InputValue value)
+    //{
+    //    color += (int) value.Get<float>();
 
-        if (color == -1)
-            color = 8;
+    //    if (color == -1)
+    //        color = 8;
         
-        color %= 9;
+    //    color %= 9;
 
-        switch (color)
-        {
-            case 0:
-                // foreach( MeshRenderer child in GetComponentsInChildren<MeshRenderer>() )
-                cap_mr.material.color = Color.white;
-                break;
-            case 1:
-                cap_mr.material.color = Color.black;
-                break;
-            case 2:
-                cap_mr.material.color = Color.red;
-                break;
-            case 3:
-                cap_mr.material.color = Color.yellow;
-                break;
-            case 4:
-                cap_mr.material.color = Color.blue;
-                break;
-            case 5:
-                cap_mr.material.color = Color.cyan;
-                break;
-            case 6:
-                cap_mr.material.color = Color.green;
-                break;
-            case 7:
-                cap_mr.material.color = Color.grey;
-                break;
-            case 8:
-                cap_mr.material.color = Color.magenta;
-                break;
-        }
-    }
+    //    switch (color)
+    //    {
+    //        case 0:
+    //            // foreach( MeshRenderer child in GetComponentsInChildren<MeshRenderer>() )
+    //            cap_mr.material.color = Color.white;
+    //            break;
+    //        case 1:
+    //            cap_mr.material.color = Color.black;
+    //            break;
+    //        case 2:
+    //            cap_mr.material.color = Color.red;
+    //            break;
+    //        case 3:
+    //            cap_mr.material.color = Color.yellow;
+    //            break;
+    //        case 4:
+    //            cap_mr.material.color = Color.blue;
+    //            break;
+    //        case 5:
+    //            cap_mr.material.color = Color.cyan;
+    //            break;
+    //        case 6:
+    //            cap_mr.material.color = Color.green;
+    //            break;
+    //        case 7:
+    //            cap_mr.material.color = Color.grey;
+    //            break;
+    //        case 8:
+    //            cap_mr.material.color = Color.magenta;
+    //            break;
+    //    }
+    //}
 
-    void OnTeam(InputValue value)
-    {
-        if (team == 0)
-            team = 1;
-        else
-            team = 0;
-    }
+    //void OnTeam(InputValue value)
+    //{
+    //    if (team == 0)
+    //        team = 1;
+    //    else
+    //        team = 0;
+    //}
 }
