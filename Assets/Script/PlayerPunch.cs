@@ -7,9 +7,11 @@ public class PlayerPunch : MonoBehaviour
 {
     public GameObject LHand;
     public GameObject RHand;
-    bool punch = false;
+    public bool punch = false;
 
     public Vector3 direction;
+
+    public bool isAbleToPunch;
 
     public GameObject hand;
 
@@ -25,7 +27,7 @@ public class PlayerPunch : MonoBehaviour
 
     void OnPunch()
     {
-        if (punch == false)
+        if (punch == false && isAbleToPunch)
         {
             punch = true;
             StartCoroutine(Punch());
@@ -57,7 +59,6 @@ public class PlayerPunch : MonoBehaviour
         }
         hand.transform.localPosition = start;
 
-        Debug.Log("enable");
         if (hand != LHand) hand = LHand;
         else hand = RHand;
         punch = false;

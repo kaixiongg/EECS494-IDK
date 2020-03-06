@@ -6,20 +6,34 @@ public class HookPlayer : MonoBehaviour
 {
     FireHook fireHook;
     public Transform hook;
-    // Start is called before the first frame update
+    GameObject playerMovement;
+
     void Start()
     {
         fireHook = gameObject.GetComponentInParent<FireHook>();
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collide!");
-        if (other.tag == "Player")
+        if (collision.collider.tag == "Player")
         {
-            fireHook.caughtplayer = other.transform;
-            other.transform.SetParent(hook);
+            ScreenShakeManager.Perturb();
+            fireHook.caughtplayer = collision.collider.gameObject.transform.parent.transform;
+
+            collision.collider.gameObject.transform.parent.GetChild(0).gameObject.SetActive(true);
+            collision.collider.gameObject.transform.parent.transform.SetParent(hook);
+            collision.collider.gameObject.GetComponent<CapsuleController>().isAbleToMove = false;
+            collision.collider.gameObject.GetComponent<PlayerPunch>().isAbleToPunch = false;
+            collision.collider.gameObject.GetComponent<LayDownHook>().isAbleToLayDownHook = false;
+
+            playerMovement = collision.collider.gameObject;
             fireHook.ishooking = false;
             fireHook.isstop = false;
         }
     }
+
+    void OnDestroy()
+    {
+        playerMovement.GetComponent<CapsuleController>().isAbleToMove = true;
+    }
+
 }
